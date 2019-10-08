@@ -23,7 +23,7 @@ PS: the vim theme is [onedark](https://github.com/joshdick/onedark.vim)
 
 # TODO
 
-- [ ] auto indent for `///` and `//!`
+- [x] automatically insert comments and format for `///` and `//!`
 
 # Contribution
 
