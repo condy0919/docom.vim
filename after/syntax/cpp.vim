@@ -1,10 +1,10 @@
-" Document comment highlight for C/CPP with minimal doxygen support
-" Modified from https://github.com/rust-lang/rust.vim
+" Document comment highlight for C/CPP
+" Origin from rust.vim
 " Language:     C/CPP
 " Author:       Zhiwei Chen
 " Url:          https://github.com/condy0919/docom.vim
 
-" keyword definitions
+" Keyword definitions
 syn keyword docomConditional if else switch
 syn keyword docomStatement   goto break return continue asm
 syn keyword docomStatement   new delete this friend using
@@ -43,44 +43,44 @@ syn keyword docomModifier virtual explicit override final
 syn keyword docomAccess   public protected private
 syn keyword docomCast     const_cast static_cast dynamic_cast reinterpret_cast
 
-" region definitions
+" Region definitions
 syn region docomCommentLine                                                   start="//"                      end="$"   contains=@Spell
 syn region docomCommentLineDoc                                                start="//\%(//\@!\|!\)"         end="$"   contains=@Spell
 syn region docomCommentLineDocError                                           start="//\%(//\@!\|!\)"         end="$"   contains=@Spell contained
 syn region docomCommentBlock             matchgroup=docomCommentBlock         start="/\*\%(!\|\*[*/]\@!\)\@!" end="\*/" contains=docomCommentBlockNest,@Spell
-syn region docomCommentBlockDoc          matchgroup=docomCommentBlockDoc      start="/\*\%(!\|\*[*/]\@!\)"    end="\*/" contains=docomCommentBlockDocNest,docomCommentBlockDocdocomCode,@Spell
+syn region docomCommentBlockDoc          matchgroup=docomCommentBlockDoc      start="/\*\%(!\|\*[*/]\@!\)"    end="\*/" contains=docomCommentBlockDocNest,docomCommentBlockDocCode,@Spell
 syn region docomCommentBlockDocError     matchgroup=docomCommentBlockDocError start="/\*\%(!\|\*[*/]\@!\)"    end="\*/" contains=docomCommentBlockDocNestError,@Spell contained
 syn region docomCommentBlockNest         matchgroup=docomCommentBlock         start="/\*"                     end="\*/" contains=docomCommentBlockNest,@Spell contained transparent
 syn region docomCommentBlockDocNest      matchgroup=docomCommentBlockDoc      start="/\*"                     end="\*/" contains=docomCommentBlockDocNest,@Spell contained transparent
 syn region docomCommentBlockDocNestError matchgroup=docomCommentBlockDocError start="/\*"                     end="\*/" contains=docomCommentBlockDocNestError,@Spell contained transparent
 
-" highlight code within ```
+" Highlight code within ```
 if !exists("b:current_syntax_embed")
-    let b:current_syntax_embed = 1
-    syntax include @CodeInComment syntax/cpp.vim
-    unlet b:current_syntax_embed
+  let b:current_syntax_embed = 1
+  syntax include @CodeInComment syntax/cpp.vim
+  unlet b:current_syntax_embed
 
-    " Currently regions marked as ```<some-other-syntax> will not get
-    " highlighted at all. In the future, we can do as vim-markdown does and
-    " highlight with the other syntax. But for now, let's make sure we find
-    " the closing block marker, because the rules below won't catch it.
-    syn region docomCommentLinesDocNonCode matchgroup=docomCommentDocCodeFence start='^\z(\s*//[!/]\s*```\).\+$' end='^\z1$' keepend contains=docomCommentLineDoc
+  " Currently regions marked as ```<some-other-syntax> will not get
+  " highlighted at all. In the future, we can do as vim-markdown does and
+  " highlight with the other syntax. But for now, let's make sure we find
+  " the closing block marker, because the rules below won't catch it.
+  syn region docomCommentLinesDocNonCode matchgroup=docomCommentDocCodeFence start='^\z(\s*//[!/]\s*```\).\+$' end='^\z1$' keepend contains=docomCommentLineDoc
 
-    syn region docomCommentLinesDocdocomCode matchgroup=docomCommentDocCodeFence start='^\z(\s*//[!/]\s*```\)[^A-Za-z0-9_-]*\%([^A-Za-z0-9_-]\+\|$\)*$' end='^\z1$' keepend contains=@CodeInComment,docomCommentLineDocLeader
-    syn region docomCommentBlockDocdocomCode matchgroup=docomCommentDocCodeFence start='^\z(\%(\s*\*\)\?\s*```\)[^A-Za-z0-9_-]*\%([^A-Za-z0-9_-]\+\|$\)*$' end='^\z1$' keepend contains=@CodeInComment,docomCommentBlockDocStar
-    " Strictly, this may or may not be correct; this code, for example, would
-    " mishighlight:
-    "
-    "     /**
-    "     ```
-    "     printf("%d\n", 1
-    "       * 1);
-    "     ```
-    "     */
-    "
-    " … but I don’t care. Balance of probability, and all that.
-    syn match docomCommentBlockDocStar /^\s*\*\s\?/ contained
-    syn match docomCommentLineDocLeader "^\s*//\%(//\@!\|!\)" contained
+  syn region docomCommentLinesDocCode matchgroup=docomCommentDocCodeFence start='^\z(\s*//[!/]\s*```\)[^A-Za-z0-9_-]*\%([^A-Za-z0-9_-]\+\|$\)*$' end='^\z1$' keepend contains=@CodeInComment,docomCommentLineDocLeader
+  syn region docomCommentBlockDocCode matchgroup=docomCommentDocCodeFence start='^\z(\%(\s*\*\)\?\s*```\)[^A-Za-z0-9_-]*\%([^A-Za-z0-9_-]\+\|$\)*$' end='^\z1$' keepend contains=@CodeInComment,docomCommentBlockDocStar
+  " Strictly, this may or may not be correct; this code, for example, would
+  " mishighlight:
+  "
+  "     /**
+  "     ```
+  "     printf("%d\n", 1
+  "       * 1);
+  "     ```
+  "     */
+  "
+  " … but I don’t care. Balance of probability, and all that.
+  syn match docomCommentBlockDocStar /^\s*\*\s\?/ contained
+  syn match docomCommentLineDocLeader "^\s*//\%(//\@!\|!\)" contained
 endif
 
 hi def link docomConditional Conditional
