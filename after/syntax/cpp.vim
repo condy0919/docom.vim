@@ -83,14 +83,6 @@ if !exists("b:current_syntax_embed")
   syn match docomCommentLineDocLeader "^\s*//\%(//\@!\|!\)" contained
 endif
 
-" Highlight heading
-syn region docomCommentDocH1 start="//[!/]\s*##\@!"      end="#*\s*$" keepend oneline
-syn region docomCommentDocH2 start="//[!/]\s*###\@!"     end="#*\s*$" keepend oneline
-syn region docomCommentDocH3 start="//[!/]\s*####\@!"    end="#*\s*$" keepend oneline
-syn region docomCommentDocH4 start="//[!/]\s*#####\@!"   end="#*\s*$" keepend oneline
-syn region docomCommentDocH5 start="//[!/]\s*######\@!"  end="#*\s*$" keepend oneline
-syn region docomCommentDocH6 start="//[!/]\s*#######\@!" end="#*\s*$" keepend oneline
-
 hi def link docomConditional Conditional
 hi def link docomStatement   Statement
 hi def link docomConstant    Constant
@@ -116,12 +108,5 @@ hi def link docomCommentBlockDoc docomCommentLineDoc
 hi def link docomCommentBlockDocStar docomCommentBlockDoc
 hi def link docomCommentBlockDocError Error
 hi def link docomCommentDocCodeFence docomCommentLineDoc
-
-hi def link docomCommentDocH1 Title
-hi def link docomCommentDocH2 docomCommentDocH1
-hi def link docomCommentDocH3 docomCommentDocH2
-hi def link docomCommentDocH4 docomCommentDocH3
-hi def link docomCommentDocH5 docomCommentDocH4
-hi def link docomCommentDocH6 docomCommentDocH5
 
 " vim: set et sw=2 sts=2 ts=2:
