@@ -43,8 +43,10 @@ syn keyword docomModifier virtual explicit override final
 syn keyword docomAccess   public protected private
 syn keyword docomCast     const_cast static_cast dynamic_cast reinterpret_cast
 
+syn keyword docomTodo contained TODO FIXME XXX NOTE NB
+
 " Region definitions
-syn region docomCommentLine                                                   start="//"                      end="$"   contains=@Spell
+syn region docomCommentLine                                                   start="//"                      end="$"   contains=docomTodo,@Spell
 syn region docomCommentLineDoc                                                start="//\%(//\@!\|!\)"         end="$"   contains=@Spell
 syn region docomCommentLineDocError                                           start="//\%(//\@!\|!\)"         end="$"   contains=@Spell contained
 syn region docomCommentBlock             matchgroup=docomCommentBlock         start="/\*\%(!\|\*[*/]\@!\)\@!" end="\*/" contains=docomCommentBlockNest,@Spell
@@ -106,6 +108,8 @@ hi def link docomAccess     Statement
 hi def link docomExceptions Exception
 hi def link docomModifier   Type
 hi def link docomCast       Statement
+
+hi def link docomTodo Todo
 
 hi def link docomCommentLine   Comment
 hi def link docomCommentLineDoc SpecialComment
