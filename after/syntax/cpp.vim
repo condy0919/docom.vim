@@ -95,7 +95,6 @@ hi def link docomType      Type
 hi def link docomStorage   StorageClass
 hi def link docomStructure Structure
 
-hi def link docomExceptions noexcept
 hi def link docomAccess     Statement
 hi def link docomExceptions Exception
 hi def link docomModifier   Type
