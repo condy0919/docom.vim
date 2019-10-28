@@ -48,13 +48,8 @@ syn keyword docomTodo contained TODO FIXME XXX NOTE NB
 " Region definitions
 syn region docomCommentLine                                                   start="//"                      end="$"   contains=docomTodo,@Spell
 syn region docomCommentLineDoc                                                start="//\%(//\@!\|!\)"         end="$"   contains=@Spell
-syn region docomCommentLineDocError                                           start="//\%(//\@!\|!\)"         end="$"   contains=@Spell contained
-syn region docomCommentBlock             matchgroup=docomCommentBlock         start="/\*\%(!\|\*[*/]\@!\)\@!" end="\*/" contains=docomCommentBlockNest,@Spell
-syn region docomCommentBlockDoc          matchgroup=docomCommentBlockDoc      start="/\*\%(!\|\*[*/]\@!\)"    end="\*/" contains=docomCommentBlockDocNest,docomCommentBlockDocCode,@Spell
-syn region docomCommentBlockDocError     matchgroup=docomCommentBlockDocError start="/\*\%(!\|\*[*/]\@!\)"    end="\*/" contains=docomCommentBlockDocNestError,@Spell contained
-syn region docomCommentBlockNest         matchgroup=docomCommentBlock         start="/\*"                     end="\*/" contains=docomCommentBlockNest,@Spell contained transparent
-syn region docomCommentBlockDocNest      matchgroup=docomCommentBlockDoc      start="/\*"                     end="\*/" contains=docomCommentBlockDocNest,@Spell contained transparent
-syn region docomCommentBlockDocNestError matchgroup=docomCommentBlockDocError start="/\*"                     end="\*/" contains=docomCommentBlockDocNestError,@Spell contained transparent
+syn region docomCommentBlock             matchgroup=docomCommentBlock         start="/\*\%(!\|\*[*/]\@!\)\@!" end="\*/" contains=@Spell
+syn region docomCommentBlockDoc          matchgroup=docomCommentBlockDoc      start="/\*\%(!\|\*[*/]\@!\)"    end="\*/" contains=docomCommentBlockDocCode,@Spell
 
 " Highlight code within ```
 if !exists("b:current_syntax_embed")
@@ -105,11 +100,9 @@ hi def link docomTodo Todo
 hi def link docomCommentLine   Comment
 hi def link docomCommentLineDoc SpecialComment
 hi def link docomCommentLineDocLeader docomCommentLineDoc
-hi def link docomCommentLineDocError Error
 hi def link docomCommentBlock  docomCommentLine
 hi def link docomCommentBlockDoc docomCommentLineDoc
 hi def link docomCommentBlockDocStar docomCommentBlockDoc
-hi def link docomCommentBlockDocError Error
 hi def link docomCommentDocCodeFence docomCommentLineDoc
 
 " Force vim to sync at least 100 lines
