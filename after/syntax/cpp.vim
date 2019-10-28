@@ -112,4 +112,7 @@ hi def link docomCommentBlockDocStar docomCommentBlockDoc
 hi def link docomCommentBlockDocError Error
 hi def link docomCommentDocCodeFence docomCommentLineDoc
 
+" Force vim to sync at least 100 lines
+syn sync minlines=100
+
 " vim: set et sw=2 sts=2 ts=2:
