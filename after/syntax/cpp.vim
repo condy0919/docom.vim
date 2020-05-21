@@ -10,11 +10,12 @@ syn keyword docomStatement   goto break return continue asm
 syn keyword docomStatement   new delete this friend using
 syn keyword docomLabel       case default
 syn keyword docomOperator    sizeof alignof operator typeid
+syn keyword docomOperator    and bitor or xor compl bitand and_eq or_eq xor_eq not not_eq
 syn keyword docomExceptions  try throw catch
 
 syn keyword docomConstant __FUNCTION__ __PRETTY_FUNCTION__ __func_
 syn keyword docomConstant __LINE__ __FILE__ __DATE__ __TIME__
-syn keyword docomConstant __VA_ARGS__
+syn keyword docomConstant __VA_ARGS__ __cplusplus
 syn keyword docomConstant true false
 
 syn keyword docomType bool char short int long void
